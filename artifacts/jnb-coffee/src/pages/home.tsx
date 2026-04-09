@@ -81,10 +81,10 @@ export default function Home() {
 
         <div className="relative z-10 container mx-auto px-5 text-center text-white">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: "easeOut" }}>
-            <p className="text-accent text-sm md:text-base font-bold tracking-[0.25em] uppercase mb-5">Welcome to J&B Coffee</p>
+            <p className="text-white/70 text-sm md:text-base font-bold tracking-[0.25em] uppercase mb-5">Welcome to J&B Coffee</p>
             <h1 className="text-5xl sm:text-6xl md:text-8xl font-bold leading-[1.05] mb-6 drop-shadow-lg">
               Bold Flavors.<br />
-              <span className="text-accent italic">Warm Connections.</span>
+              <span className="text-white italic">Warm Connections.</span>
             </h1>
             <p className="text-lg md:text-xl text-white/85 mb-10 max-w-xl mx-auto leading-relaxed font-light">
               Kathmandu's neighborhood coffee house blending Nepali warmth with specialty coffee culture since 2019.
@@ -113,7 +113,7 @@ export default function Home() {
           <AnimatedSection className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center text-white">
             {stats.map((s, i) => (
               <motion.div key={i} variants={fadeUp}>
-                <p className="text-4xl md:text-5xl font-bold text-accent mb-1">{s.number}</p>
+                <p className="text-4xl md:text-5xl font-bold text-white mb-1">{s.number}</p>
                 <p className="text-sm font-medium tracking-wider uppercase text-white/70">{s.label}</p>
               </motion.div>
             ))}
@@ -278,7 +278,7 @@ export default function Home() {
           <div className="max-w-2xl mx-auto text-center text-white">
             <AnimatedSection>
               <motion.div variants={fadeUp}>
-                <p className="text-accent text-sm font-bold tracking-[0.2em] uppercase mb-3">Celebrate With Us</p>
+                <p className="text-white/70 text-sm font-bold tracking-[0.2em] uppercase mb-3">Celebrate With Us</p>
                 <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
                   Make your moments unforgettable.
                 </h2>
@@ -292,7 +292,7 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
-                <Button asChild className="bg-accent hover:bg-accent/85 text-white rounded-full px-10 h-13 text-base font-semibold shadow-xl hover:shadow-2xl transition-all hover:-translate-y-1">
+                <Button asChild className="bg-white text-primary hover:bg-white/90 rounded-full px-10 h-13 text-base font-semibold shadow-xl hover:shadow-2xl transition-all hover:-translate-y-1">
                   <a href="https://jnbcoffee.com.np" target="_blank" rel="noopener noreferrer">Book For Celebration</a>
                 </Button>
               </motion.div>

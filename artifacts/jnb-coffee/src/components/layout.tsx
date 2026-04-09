@@ -130,7 +130,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="text-xs font-bold tracking-[0.2em] uppercase text-accent mb-6">Explore</h4>
+            <h4 className="text-xs font-bold tracking-[0.2em] uppercase text-rose-300 mb-6">Explore</h4>
             <ul className="space-y-3 text-white/60 text-sm">
               <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
               {navLinks.map(link => (
@@ -140,25 +140,25 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="text-xs font-bold tracking-[0.2em] uppercase text-accent mb-6">Contact</h4>
+            <h4 className="text-xs font-bold tracking-[0.2em] uppercase text-rose-300 mb-6">Contact</h4>
             <ul className="space-y-4 text-white/60 text-sm">
               <li className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-accent shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-rose-300 shrink-0 mt-0.5" />
                 <span>Kathmandu, Nepal</span>
               </li>
               <li className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-accent shrink-0" />
+                <Phone className="w-4 h-4 text-rose-300 shrink-0" />
                 <a href="tel:+977980000000" className="hover:text-white transition-colors">+977 980-000-0000</a>
               </li>
               <li className="flex items-center gap-3">
-                <Mail className="w-4 h-4 text-accent shrink-0" />
+                <Mail className="w-4 h-4 text-rose-300 shrink-0" />
                 <a href="mailto:hello@jnbcoffee.com.np" className="hover:text-white transition-colors">hello@jnbcoffee.com.np</a>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-xs font-bold tracking-[0.2em] uppercase text-accent mb-6">Opening Hours</h4>
+            <h4 className="text-xs font-bold tracking-[0.2em] uppercase text-rose-300 mb-6">Opening Hours</h4>
             <ul className="space-y-2.5 text-sm">
               <li className="flex justify-between text-white/60"><span>Mon – Fri</span><span>7:00 AM – 8:00 PM</span></li>
               <li className="flex justify-between text-white/60"><span>Saturday</span><span>8:00 AM – 9:00 PM</span></li>
