@@ -1,0 +1,32 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "ngcbYw-OVyyNTUtUmv3sE"
+uri = "file://artifacts/jnb-coffee/public/images/hero.png"
+type = "image"
+title = "Vibrant cafe interior with murals"
+
+[[generated]]
+id = "qHIhJWNNbPyq8QidtV07R"
+uri = "file://artifacts/jnb-coffee/public/images/latte.png"
+type = "image"
+title = "Latte art in ceramic cup"
+
+[[generated]]
+id = "XE1aa7dMRsvXN_6eSDui9"
+uri = "file://artifacts/jnb-coffee/public/images/cake.png"
+type = "image"
+title = "Delicious cake slice"
+
+[[generated]]
+id = "z3Sa8oTQA4YdMEM3zbygS"
+uri = "file://artifacts/jnb-coffee/public/images/ambiance.png"
+type = "image"
+title = "Cozy cafe ambiance corner"
+
+[[generated]]
+id = "n4qkUsPebibEdi0OhAC0m"
+uri = "file://artifacts/jnb-coffee/public/images/events.png"
+type = "image"
+title = "People celebrating in cafe"

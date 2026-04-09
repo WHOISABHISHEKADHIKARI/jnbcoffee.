@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "J&B Coffee"
+version = "1.0.0"
+id = "artifacts/jnb-coffee"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19409
+
+[services.development]
+run = "pnpm --filter @workspace/jnb-coffee run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/jnb-coffee", "run", "build" ]
+publicDir = "artifacts/jnb-coffee/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19409"
+BASE_PATH = "/"
