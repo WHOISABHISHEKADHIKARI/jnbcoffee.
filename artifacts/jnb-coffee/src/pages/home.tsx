@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
-import { Coffee, MapPin, Phone, Instagram, Facebook, ArrowRight, Star } from "lucide-react";
+import { MapPin, Phone, Instagram, Facebook, ArrowRight, Star, Clock, Mail } from "lucide-react";
+import logoImg from "@assets/20240122_180430_0000_1775752179612.png";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -42,9 +43,9 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 group">
             <img 
-              src="https://jnbcoffee.com.np/wp-content/uploads/2024/01/20240122_180430_0000.png" 
+              src={logoImg}
               alt="J&B Coffee Logo" 
-              className="h-12 w-auto transition-transform group-hover:scale-105"
+              className="h-12 w-auto transition-transform group-hover:scale-105 drop-shadow-md"
             />
           </Link>
           
@@ -252,55 +253,101 @@ export default function Home() {
       </section>
 
       {/* Footer / Contact */}
-      <footer id="visit" className="bg-primary text-white pt-20 pb-10">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-12 mb-16">
+      <footer id="visit" className="bg-[#1a0a1a] text-white">
+        {/* Top CTA strip */}
+        <div className="bg-accent py-10">
+          <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
-              <img 
-                src="https://jnbcoffee.com.np/wp-content/uploads/2024/01/20240122_180430_0000.png" 
-                alt="J&B Coffee Logo" 
-                className="h-16 w-auto mb-6 brightness-0 invert"
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-1">Come visit us today</h3>
+              <p className="text-white/90 text-lg">Your next favorite cup is waiting for you.</p>
+            </div>
+            <Button className="bg-white text-accent hover:bg-white/90 rounded-full px-8 py-6 text-lg font-semibold shadow-lg shrink-0">
+              Get Directions
+            </Button>
+          </div>
+        </div>
+
+        <div className="container mx-auto px-4 pt-16 pb-10">
+          <div className="grid md:grid-cols-4 gap-12 mb-12">
+            {/* Brand */}
+            <div className="md:col-span-1">
+              <img
+                src={logoImg}
+                alt="J&B Coffee Logo"
+                className="h-20 w-auto mb-5"
               />
-              <p className="text-white/80 max-w-sm">
-                A vibrant neighborhood coffee house blending Nepali warmth with modern coffee culture. Serving specialty coffee, cakes, and good vibes.
+              <p className="text-white/60 text-sm leading-relaxed">
+                A vibrant neighborhood coffee house blending Nepali warmth with modern specialty coffee culture.
               </p>
-            </div>
-            
-            <div>
-              <h4 className="text-xl font-bold mb-6 text-accent-foreground">Visit Us</h4>
-              <ul className="space-y-4">
-                <li className="flex items-start gap-3">
-                  <MapPin className="w-5 h-5 text-accent shrink-0 mt-1" />
-                  <span className="text-white/80">123 Coffee Street, Cafe District<br />Kathmandu, Nepal</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Phone className="w-5 h-5 text-accent shrink-0" />
-                  <span className="text-white/80">+977 980-0000000</span>
-                </li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="text-xl font-bold mb-6 text-accent-foreground">Hours</h4>
-              <ul className="space-y-2 text-white/80 mb-8">
-                <li className="flex justify-between"><span>Mon - Fri:</span> <span>7:00 AM - 8:00 PM</span></li>
-                <li className="flex justify-between"><span>Saturday:</span> <span>8:00 AM - 9:00 PM</span></li>
-                <li className="flex justify-between"><span>Sunday:</span> <span>8:00 AM - 8:00 PM</span></li>
-              </ul>
-              
-              <div className="flex gap-4">
-                <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
-                  <Instagram className="w-5 h-5" />
+              <div className="flex gap-3 mt-6">
+                <a href="https://www.instagram.com/jnbcoffee/" target="_blank" rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
+                  <Instagram className="w-4 h-4" />
                 </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
-                  <Facebook className="w-5 h-5" />
+                <a href="https://www.facebook.com/jnbcoffee/" target="_blank" rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
+                  <Facebook className="w-4 h-4" />
                 </a>
               </div>
             </div>
+
+            {/* Quick Links */}
+            <div>
+              <h4 className="text-sm font-bold tracking-widest uppercase text-accent mb-6">Explore</h4>
+              <ul className="space-y-3 text-white/70 text-sm">
+                <li><a href="#story" className="hover:text-accent transition-colors">Our Story</a></li>
+                <li><a href="#menu" className="hover:text-accent transition-colors">Menu</a></li>
+                <li><a href="#ambiance" className="hover:text-accent transition-colors">Ambiance</a></li>
+                <li><a href="#events" className="hover:text-accent transition-colors">Events & Celebrations</a></li>
+              </ul>
+            </div>
+
+            {/* Contact */}
+            <div>
+              <h4 className="text-sm font-bold tracking-widest uppercase text-accent mb-6">Contact</h4>
+              <ul className="space-y-4 text-white/70 text-sm">
+                <li className="flex items-start gap-3">
+                  <MapPin className="w-4 h-4 text-accent shrink-0 mt-0.5" />
+                  <span>Kathmandu, Nepal</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <Phone className="w-4 h-4 text-accent shrink-0" />
+                  <a href="tel:+977980000000" className="hover:text-accent transition-colors">+977 980-000-0000</a>
+                </li>
+                <li className="flex items-center gap-3">
+                  <Mail className="w-4 h-4 text-accent shrink-0" />
+                  <a href="mailto:hello@jnbcoffee.com.np" className="hover:text-accent transition-colors">hello@jnbcoffee.com.np</a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Hours */}
+            <div>
+              <h4 className="text-sm font-bold tracking-widest uppercase text-accent mb-6">Opening Hours</h4>
+              <ul className="space-y-2 text-white/70 text-sm">
+                <li className="flex items-center gap-2 mb-3">
+                  <Clock className="w-4 h-4 text-accent shrink-0" />
+                  <span className="text-white/50 uppercase tracking-wide text-xs">We're open</span>
+                </li>
+                <li className="flex justify-between gap-4">
+                  <span>Mon – Fri</span>
+                  <span className="text-white/50">7:00 AM – 8:00 PM</span>
+                </li>
+                <li className="flex justify-between gap-4">
+                  <span>Saturday</span>
+                  <span className="text-white/50">8:00 AM – 9:00 PM</span>
+                </li>
+                <li className="flex justify-between gap-4">
+                  <span>Sunday</span>
+                  <span className="text-white/50">8:00 AM – 8:00 PM</span>
+                </li>
+              </ul>
+            </div>
           </div>
-          
-          <div className="border-t border-white/20 pt-8 text-center text-white/60 text-sm">
+
+          <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-white/40 text-xs">
             <p>&copy; {new Date().getFullYear()} J&B Coffee. All rights reserved.</p>
+            <p>Made with love in Kathmandu, Nepal</p>
           </div>
         </div>
       </footer>
