@@ -53,7 +53,15 @@ const faqs = [
 export default function EventsPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState("");
   const [form, setForm] = useState({ name: "", email: "", phone: "", date: "", guests: "", type: "", notes: "" });
+
+  const handleSelectPackage = (pkgName: string) => {
+    setSelectedPackage(pkgName);
+    setTimeout(() => {
+      document.getElementById("booking-form")?.scrollIntoView({ behavior: "smooth" });
+    }, 50);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -139,9 +147,9 @@ export default function EventsPage() {
                     </li>
                   ))}
                 </ul>
-                <Button className="w-full bg-accent hover:bg-accent/85 text-white rounded-full font-semibold"
-                  onClick={() => document.getElementById("booking-form")?.scrollIntoView({ behavior: "smooth" })}>
-                  Book This Package
+                <Button className={`w-full rounded-full font-semibold transition-all ${selectedPackage === pkg.name ? "bg-green-600 hover:bg-green-700 text-white" : "bg-accent hover:bg-accent/85 text-white"}`}
+                  onClick={() => handleSelectPackage(pkg.name)}>
+                  {selectedPackage === pkg.name ? "Selected" : "Book This Package"}
                 </Button>
               </motion.div>
             ))}
@@ -157,6 +165,20 @@ export default function EventsPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-primary">Book your event</h2>
             <p className="text-muted-foreground mt-3 text-lg">Fill in the form and our events team will be in touch within 24 hours.</p>
           </motion.div>
+
+          {selectedPackage && !submitted && (
+            <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
+              className="mb-6 flex items-center justify-between bg-accent/10 border border-accent/30 rounded-2xl px-6 py-4">
+              <div>
+                <p className="text-xs font-bold text-accent uppercase tracking-wider mb-0.5">Selected Package</p>
+                <p className="font-bold text-primary text-lg">{selectedPackage}</p>
+              </div>
+              <button onClick={() => setSelectedPackage("")}
+                className="text-xs text-muted-foreground hover:text-foreground underline transition-colors">
+                Change
+              </button>
+            </motion.div>
+          )}
 
           {submitted ? (
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
