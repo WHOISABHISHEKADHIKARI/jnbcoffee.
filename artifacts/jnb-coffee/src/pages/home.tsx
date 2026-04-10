@@ -7,6 +7,88 @@ import {
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Navbar, Footer } from "@/components/layout";
+import { JsonLd } from "@/components/json-ld";
+
+const homeSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CafeOrCoffeeShop",
+      "@id": "https://jnbcoffee.com.np/#business",
+      "name": "J&B Coffee",
+      "alternateName": "J and B Coffee",
+      "description": "A warm, community-centered specialty coffee house in Kathmandu, Nepal, offering handcrafted beverages, artisan food, and a cozy atmosphere rooted in Nepali hospitality.",
+      "url": "https://jnbcoffee.com.np",
+      "telephone": "+977-9800000000",
+      "email": "hello@jnbcoffee.com.np",
+      "servesCuisine": ["Coffee", "Nepali", "Continental", "Bakery"],
+      "priceRange": "NPR 150 – NPR 600",
+      "currenciesAccepted": "NPR",
+      "paymentAccepted": "Cash, Credit Card, Esewa, Khalti",
+      "hasMenu": "https://jnbcoffee.com.np/menu",
+      "image": "https://jnbcoffee.com.np/logo.png",
+      "logo": "https://jnbcoffee.com.np/logo.png",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Thamel",
+        "addressLocality": "Kathmandu",
+        "addressRegion": "Bagmati Province",
+        "postalCode": "44600",
+        "addressCountry": "NP"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 27.7152,
+        "longitude": 85.3123
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "08:00",
+          "closes": "21:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Saturday", "Sunday"],
+          "opens": "09:00",
+          "closes": "22:00"
+        }
+      ],
+      "amenityFeature": [
+        { "@type": "LocationFeatureSpecification", "name": "Free Wi-Fi", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Outdoor Seating", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Pet Friendly", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Power Outlets", "value": true }
+      ],
+      "sameAs": [
+        "https://www.instagram.com/jnbcoffee",
+        "https://www.facebook.com/jnbcoffee"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://jnbcoffee.com.np/#website",
+      "url": "https://jnbcoffee.com.np",
+      "name": "J&B Coffee",
+      "description": "Official website of J&B Coffee — Kathmandu's warmest specialty coffee house.",
+      "publisher": { "@id": "https://jnbcoffee.com.np/#business" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://jnbcoffee.com.np/#webpage",
+      "url": "https://jnbcoffee.com.np",
+      "name": "J&B Coffee — Kathmandu's Warmest Specialty Coffee House",
+      "description": "Handcrafted coffee, artisan food, and warm connections in the heart of Kathmandu.",
+      "isPartOf": { "@id": "https://jnbcoffee.com.np/#website" },
+      "about": { "@id": "https://jnbcoffee.com.np/#business" },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://jnbcoffee.com.np" }]
+      }
+    }
+  ]
+};
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -70,6 +152,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
+      <JsonLd id="jsonld-home" schema={homeSchema} />
       <Navbar transparent />
 
       {/* ── HERO ── */}

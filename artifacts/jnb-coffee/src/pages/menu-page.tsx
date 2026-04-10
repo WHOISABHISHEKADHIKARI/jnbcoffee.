@@ -2,6 +2,79 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Navbar, Footer, PageHero } from "@/components/layout";
 import { Coffee, Cake, Utensils, Leaf, IceCream, Wine } from "lucide-react";
+import { JsonLd } from "@/components/json-ld";
+
+const menuSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://jnbcoffee.com.np/menu#webpage",
+      "url": "https://jnbcoffee.com.np/menu",
+      "name": "Menu — J&B Coffee",
+      "description": "Browse the full J&B Coffee menu featuring handcrafted espresso drinks, cold brews, artisan pastries, Nepali-inspired bites, fresh salads, and more.",
+      "isPartOf": { "@id": "https://jnbcoffee.com.np/#website" },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://jnbcoffee.com.np" },
+          { "@type": "ListItem", "position": 2, "name": "Menu", "item": "https://jnbcoffee.com.np/menu" }
+        ]
+      }
+    },
+    {
+      "@type": "Menu",
+      "@id": "https://jnbcoffee.com.np/menu#menu",
+      "name": "J&B Coffee Full Menu",
+      "description": "Our complete menu of handcrafted beverages, artisan food, and seasonal specials.",
+      "url": "https://jnbcoffee.com.np/menu",
+      "inLanguage": "en",
+      "hasMenuSection": [
+        {
+          "@type": "MenuSection",
+          "name": "Hot Coffee",
+          "description": "Expertly pulled espresso-based drinks and filtered brews.",
+          "hasMenuItem": [
+            { "@type": "MenuItem", "name": "Espresso", "offers": { "@type": "Offer", "price": "150", "priceCurrency": "NPR" } },
+            { "@type": "MenuItem", "name": "Cappuccino", "offers": { "@type": "Offer", "price": "280", "priceCurrency": "NPR" } },
+            { "@type": "MenuItem", "name": "Flat White", "offers": { "@type": "Offer", "price": "320", "priceCurrency": "NPR" } },
+            { "@type": "MenuItem", "name": "Latte", "offers": { "@type": "Offer", "price": "300", "priceCurrency": "NPR" } },
+            { "@type": "MenuItem", "name": "Pour Over", "offers": { "@type": "Offer", "price": "350", "priceCurrency": "NPR" } }
+          ]
+        },
+        {
+          "@type": "MenuSection",
+          "name": "Cold Drinks",
+          "description": "Chilled brews and iced specialty beverages.",
+          "hasMenuItem": [
+            { "@type": "MenuItem", "name": "Cold Brew", "offers": { "@type": "Offer", "price": "380", "priceCurrency": "NPR" } },
+            { "@type": "MenuItem", "name": "Iced Latte", "offers": { "@type": "Offer", "price": "340", "priceCurrency": "NPR" } },
+            { "@type": "MenuItem", "name": "Nitro Cold Brew", "offers": { "@type": "Offer", "price": "420", "priceCurrency": "NPR" } }
+          ]
+        },
+        {
+          "@type": "MenuSection",
+          "name": "Bakes & Pastries",
+          "description": "Fresh-baked goods made in-house daily.",
+          "hasMenuItem": [
+            { "@type": "MenuItem", "name": "Butter Croissant", "offers": { "@type": "Offer", "price": "220", "priceCurrency": "NPR" } },
+            { "@type": "MenuItem", "name": "Banana Bread", "offers": { "@type": "Offer", "price": "180", "priceCurrency": "NPR" } },
+            { "@type": "MenuItem", "name": "Cinnamon Roll", "offers": { "@type": "Offer", "price": "260", "priceCurrency": "NPR" } }
+          ]
+        },
+        {
+          "@type": "MenuSection",
+          "name": "Nepali Bites",
+          "description": "Local-inspired snacks with a contemporary twist.",
+          "hasMenuItem": [
+            { "@type": "MenuItem", "name": "Chatamari Toast", "description": "Nepali rice crepe on sourdough", "offers": { "@type": "Offer", "price": "350", "priceCurrency": "NPR" } },
+            { "@type": "MenuItem", "name": "Sel Roti French Toast", "description": "Sweet ring bread served French toast-style", "offers": { "@type": "Offer", "price": "380", "priceCurrency": "NPR" } }
+          ]
+        }
+      ]
+    }
+  ]
+};
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -95,6 +168,7 @@ export default function MenuPage() {
 
   return (
     <div className="min-h-screen bg-background">
+      <JsonLd id="jsonld-menu" schema={menuSchema} />
       <Navbar />
 
       <PageHero

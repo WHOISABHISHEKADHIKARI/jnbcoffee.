@@ -3,6 +3,50 @@ import { Navbar, Footer, PageHero } from "@/components/layout";
 import { ArrowRight, Heart, Leaf, Users, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import { JsonLd } from "@/components/json-ld";
+
+const storySchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "AboutPage",
+      "@id": "https://jnbcoffee.com.np/story#webpage",
+      "url": "https://jnbcoffee.com.np/story",
+      "name": "Our Story — J&B Coffee",
+      "description": "The story of J&B Coffee — how two friends, Jaya and Bikash, built Kathmandu's most beloved specialty coffee house from a shared obsession with great coffee.",
+      "isPartOf": { "@id": "https://jnbcoffee.com.np/#website" },
+      "about": { "@id": "https://jnbcoffee.com.np/#business" },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://jnbcoffee.com.np" },
+          { "@type": "ListItem", "position": 2, "name": "Our Story", "item": "https://jnbcoffee.com.np/story" }
+        ]
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://jnbcoffee.com.np/#organization",
+      "name": "J&B Coffee",
+      "url": "https://jnbcoffee.com.np",
+      "foundingDate": "2019",
+      "foundingLocation": {
+        "@type": "Place",
+        "name": "Thamel, Kathmandu, Nepal"
+      },
+      "founder": [
+        { "@type": "Person", "name": "Jaya", "jobTitle": "Co-founder" },
+        { "@type": "Person", "name": "Bikash", "jobTitle": "Co-founder" }
+      ],
+      "description": "J&B Coffee was founded by Jaya and Bikash, two friends united by a love for great coffee and Nepali warmth. What began as a conversation became Kathmandu's most cherished coffee house.",
+      "knowsAbout": ["Specialty Coffee", "Nepali Hospitality", "Artisan Brewing", "Community Cafes"],
+      "sameAs": [
+        "https://www.instagram.com/jnbcoffee",
+        "https://www.facebook.com/jnbcoffee"
+      ]
+    }
+  ]
+};
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -27,6 +71,7 @@ const values = [
 export default function StoryPage() {
   return (
     <div className="min-h-screen bg-background">
+      <JsonLd id="jsonld-story" schema={storySchema} />
       <Navbar />
 
       <PageHero

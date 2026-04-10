@@ -3,6 +3,49 @@ import { Navbar, Footer, PageHero } from "@/components/layout";
 import { Wifi, Zap, PawPrint, Volume2, Armchair, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import { JsonLd } from "@/components/json-ld";
+
+const ambianceSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://jnbcoffee.com.np/ambiance#webpage",
+      "url": "https://jnbcoffee.com.np/ambiance",
+      "name": "Ambiance — J&B Coffee",
+      "description": "Explore the spaces at J&B Coffee — from the sunny main floor and cozy reading nooks to the private terrace and creative open-plan work area.",
+      "isPartOf": { "@id": "https://jnbcoffee.com.np/#website" },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://jnbcoffee.com.np" },
+          { "@type": "ListItem", "position": 2, "name": "Ambiance", "item": "https://jnbcoffee.com.np/ambiance" }
+        ]
+      }
+    },
+    {
+      "@type": "FoodEstablishment",
+      "@id": "https://jnbcoffee.com.np/#ambiance",
+      "name": "J&B Coffee",
+      "description": "A warm, design-forward café space in Kathmandu with multiple distinct seating areas — the sunny main floor, intimate reading nooks, a leafy terrace, and a productive open-plan work zone.",
+      "amenityFeature": [
+        { "@type": "LocationFeatureSpecification", "name": "Free High-Speed Wi-Fi", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Power Outlets at Every Seat", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Pet-Friendly Terrace", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Curated Music Atmosphere", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Ergonomic Seating", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Natural Light Throughout", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Outdoor Terrace", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Private Event Space", "value": true }
+      ],
+      "photo": [
+        { "@type": "ImageObject", "name": "Main Floor", "description": "Bright, open main seating area with natural light and local artwork" },
+        { "@type": "ImageObject", "name": "Reading Nook", "description": "Quiet corner seating with bookshelves and soft lighting" },
+        { "@type": "ImageObject", "name": "Terrace", "description": "Leafy outdoor terrace ideal for sunny mornings" }
+      ]
+    }
+  ]
+};
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -35,6 +78,7 @@ const galleryImages = [
 export default function AmbiancePage() {
   return (
     <div className="min-h-screen bg-background">
+      <JsonLd id="jsonld-ambiance" schema={ambianceSchema} />
       <Navbar />
 
       <PageHero

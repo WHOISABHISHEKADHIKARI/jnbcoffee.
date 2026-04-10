@@ -3,6 +3,75 @@ import { motion } from "framer-motion";
 import { Navbar, Footer, PageHero } from "@/components/layout";
 import { MapPin, Phone, Mail, Clock, Instagram, Facebook, CheckCircle2, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { JsonLd } from "@/components/json-ld";
+
+const contactSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ContactPage",
+      "@id": "https://jnbcoffee.com.np/contact#webpage",
+      "url": "https://jnbcoffee.com.np/contact",
+      "name": "Contact Us — J&B Coffee",
+      "description": "Get in touch with J&B Coffee. Find our address in Thamel, Kathmandu, opening hours, phone number, email, and social media links.",
+      "isPartOf": { "@id": "https://jnbcoffee.com.np/#website" },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://jnbcoffee.com.np" },
+          { "@type": "ListItem", "position": 2, "name": "Contact", "item": "https://jnbcoffee.com.np/contact" }
+        ]
+      }
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://jnbcoffee.com.np/contact#business",
+      "name": "J&B Coffee",
+      "url": "https://jnbcoffee.com.np",
+      "telephone": "+977-9800000000",
+      "email": "hello@jnbcoffee.com.np",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Thamel",
+        "addressLocality": "Kathmandu",
+        "addressRegion": "Bagmati Province",
+        "postalCode": "44600",
+        "addressCountry": "NP"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 27.7152,
+        "longitude": 85.3123
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "08:00",
+          "closes": "21:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Saturday", "Sunday"],
+          "opens": "09:00",
+          "closes": "22:00"
+        }
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+977-9800000000",
+        "email": "hello@jnbcoffee.com.np",
+        "contactType": "customer service",
+        "availableLanguage": ["English", "Nepali"],
+        "areaServed": "NP"
+      },
+      "sameAs": [
+        "https://www.instagram.com/jnbcoffee",
+        "https://www.facebook.com/jnbcoffee"
+      ]
+    }
+  ]
+};
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -20,6 +89,7 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-background">
+      <JsonLd id="jsonld-contact" schema={contactSchema} />
       <Navbar />
 
       <PageHero

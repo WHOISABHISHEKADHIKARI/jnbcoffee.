@@ -3,6 +3,78 @@ import { motion } from "framer-motion";
 import { Navbar, Footer, PageHero } from "@/components/layout";
 import { PartyPopper, Briefcase, Heart, Baby, Users, ChevronDown, ChevronUp, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { JsonLd } from "@/components/json-ld";
+
+const eventsSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://jnbcoffee.com.np/events#webpage",
+      "url": "https://jnbcoffee.com.np/events",
+      "name": "Events & Celebrations — J&B Coffee",
+      "description": "Host your birthday, anniversary, corporate brunch, baby shower, or private gathering at J&B Coffee. Dedicated event packages with curated menus and full-service planning.",
+      "isPartOf": { "@id": "https://jnbcoffee.com.np/#website" },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://jnbcoffee.com.np" },
+          { "@type": "ListItem", "position": 2, "name": "Events", "item": "https://jnbcoffee.com.np/events" }
+        ]
+      }
+    },
+    {
+      "@type": "EventVenue",
+      "@id": "https://jnbcoffee.com.np/events#venue",
+      "name": "J&B Coffee — Private Event Space",
+      "description": "A beautiful private venue inside J&B Coffee, Kathmandu, available for intimate gatherings, corporate brunches, birthday parties, and special celebrations.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Thamel",
+        "addressLocality": "Kathmandu",
+        "addressCountry": "NP"
+      },
+      "maximumAttendeeCapacity": 50,
+      "amenityFeature": [
+        { "@type": "LocationFeatureSpecification", "name": "Dedicated Event Host", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Custom Catering", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Décor Setup", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Audio / Projector", "value": true }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://jnbcoffee.com.np/events#service",
+      "name": "Private Event Booking",
+      "provider": { "@id": "https://jnbcoffee.com.np/#business" },
+      "serviceType": "Event Venue Booking",
+      "areaServed": { "@type": "City", "name": "Kathmandu" },
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Intimate Gathering",
+          "description": "Up to 15 guests. Includes reserved space, custom beverage menu, and welcome décor.",
+          "price": "8000",
+          "priceCurrency": "NPR"
+        },
+        {
+          "@type": "Offer",
+          "name": "Social Celebration",
+          "description": "Up to 30 guests. Includes private floor, brunch buffet, floral arrangement, and event host.",
+          "price": "18000",
+          "priceCurrency": "NPR"
+        },
+        {
+          "@type": "Offer",
+          "name": "Full Celebration",
+          "description": "Up to 50 guests. Full venue buyout with custom menu, full décor, live acoustic music, and photography package.",
+          "price": "35000",
+          "priceCurrency": "NPR"
+        }
+      ]
+    }
+  ]
+};
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -70,6 +142,7 @@ export default function EventsPage() {
 
   return (
     <div className="min-h-screen bg-background">
+      <JsonLd id="jsonld-events" schema={eventsSchema} />
       <Navbar />
 
       <PageHero
